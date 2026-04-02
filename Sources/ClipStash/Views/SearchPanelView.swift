@@ -624,7 +624,7 @@ struct SettingsTabView: View {
                 // 關於
                 settingsSection(title: "關於", icon: "info.circle") {
                     HStack {
-                        Text("Paster v1.0.0")
+                        Text("Paster v\(UpdateManager.shared.currentVersionString)")
                             .font(.system(size: 13))
                         Spacer()
                     }
