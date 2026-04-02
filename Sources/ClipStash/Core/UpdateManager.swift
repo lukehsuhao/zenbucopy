@@ -6,7 +6,7 @@ final class UpdateManager: ObservableObject {
     static let shared = UpdateManager()
 
     private let repo = "lukehsuhao/paster"
-    let currentVersionString = "1.1.1"
+    let currentVersionString = "1.2.0"
     private var currentVersion: String { currentVersionString }
 
     @Published var updateAvailable = false
