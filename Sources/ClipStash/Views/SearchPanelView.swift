@@ -546,18 +546,17 @@ struct SettingsTabView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
                             Text("輔助使用權限").font(.system(size: 13))
-                            Text("需要此權限才能自動貼上到其他 App").font(.system(size: 11)).foregroundColor(.secondary)
+                            Text("雙擊自動貼上到其他 App").font(.system(size: 11)).foregroundColor(.secondary)
                         }
                         Spacer()
                         if AXIsProcessTrusted() {
-                            Text("✓ 已授權")
-                                .font(.system(size: 12))
-                                .foregroundColor(.green)
-                        } else {
-                            Button("開啟授權") {
-                                PasteService.requestAccessibility()
+                            HStack(spacing: 4) {
+                                Image(systemName: "checkmark.circle.fill").foregroundColor(.green).font(.system(size: 12))
+                                Text("已開啟").font(.system(size: 12)).foregroundColor(.green)
                             }
-                            .font(.system(size: 12))
+                        } else {
+                            Button("開啟設定") { PasteService.openAccessibilitySettings() }
+                                .font(.system(size: 12))
                         }
                     }
                 }

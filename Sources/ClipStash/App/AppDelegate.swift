@@ -17,7 +17,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         HotkeyManager.shared.register()
 
-        // 啟動後延遲檢查更新
+        // 首次啟動顯示權限引導
+        let hasCompletedSetup = UserDefaults.standard.bool(forKey: "hasCompletedSetup")
+        if !hasCompletedSetup {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                SetupWindowController.shared.show()
+            }
+        }
+
+        // 檢查更新
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             UpdateManager.shared.checkOnLaunchIfNeeded()
         }

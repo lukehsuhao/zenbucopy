@@ -7,7 +7,7 @@ APP_DIR="Paster.app/Contents"
 
 mkdir -p "$APP_DIR/MacOS" "$APP_DIR/Resources"
 
-echo "🔨 Compiling..."
+echo "🔨 Compiling Paster..."
 swiftc \
   -sdk "$SDK" \
   -target arm64-apple-macos13.0 \
@@ -16,6 +16,7 @@ swiftc \
   -framework AppKit \
   -framework SwiftUI \
   -framework Carbon \
+  -framework UserNotifications \
   -O \
   -o "$APP_DIR/MacOS/Paster" \
   Sources/ClipStash/Models/ClipItem.swift \
@@ -29,11 +30,15 @@ swiftc \
   Sources/ClipStash/Views/SearchPanelView.swift \
   Sources/ClipStash/Views/SearchPanelController.swift \
   Sources/ClipStash/Views/MenuBarView.swift \
+  Sources/ClipStash/Views/SetupWindowController.swift \
   Sources/ClipStash/App/AppDelegate.swift \
   Sources/ClipStash/App/ClipStashApp.swift
 
-# 簽名（固定 identifier，讓輔助使用權限在重新 build 後仍有效）
-codesign -f -s - --identifier "com.luke.paster" Paster.app 2>/dev/null
+# 用 "Paster Dev" 自簽證書簽名（TCC 權限在重新 build 後仍有效）
+codesign -f -s "Paster Dev" --identifier "com.luke.paster" Paster.app 2>/dev/null
 
 echo "✅ Built: Paster.app"
 echo "   Run: open Paster.app"
+echo ""
+echo "   部署到 Applications："
+echo "   cp -R Paster.app /Applications/Paster.app"

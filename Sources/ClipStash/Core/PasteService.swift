@@ -5,10 +5,8 @@ import Foundation
 final class PasteService {
     static let shared = PasteService()
 
-    /// 開啟搜尋面板前的前景 App（在 hotkey 觸發時記下來）
     var previousApp: NSRunningApplication?
 
-    /// 排除的 bundle ID（系統 UI、自己）
     private let ignoredBundleIDs: Set<String> = [
         "com.apple.SecurityAgent",
         "com.apple.UserNotificationCenter",
@@ -17,18 +15,15 @@ final class PasteService {
 
     private init() {}
 
-    /// 記住前景 App（排除系統 UI 和自己）
     func capturePreviousApp() {
         let app = NSWorkspace.shared.frontmostApplication
         let myBundleID = Bundle.main.bundleIdentifier ?? ""
         let appBundleID = app?.bundleIdentifier ?? ""
-
         if appBundleID != myBundleID && !ignoredBundleIDs.contains(appBundleID) {
             previousApp = app
         }
     }
 
-    /// 將 ClipItem 寫入系統剪貼簿
     func writeToClipboard(_ item: ClipItem) {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -54,19 +49,14 @@ final class PasteService {
         }
     }
 
-    /// 一鍵完成：寫入剪貼簿 → 切回前一個 App → 模擬 Cmd+V
     func pasteItem(_ item: ClipItem) {
         writeToClipboard(item)
 
         guard let targetApp = previousApp else { return }
 
-        // 1. 隱藏 Paster 視窗
         SearchPanelController.shared.hide()
-
-        // 2. 切回前一個 App
         targetApp.activate(options: [.activateIgnoringOtherApps])
 
-        // 3. 等目標 App 到前景後模擬 Cmd+V
         let targetPID = targetApp.processIdentifier
         let startTime = Date()
 
@@ -76,11 +66,9 @@ final class PasteService {
 
             if frontPID == targetPID || elapsed > 0.5 {
                 let source = CGEventSource(stateID: .combinedSessionState)
-
                 let keyDown = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true)
                 keyDown?.flags = .maskCommand
                 keyDown?.post(tap: .cghidEventTap)
-
                 let keyUp = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false)
                 keyUp?.flags = .maskCommand
                 keyUp?.post(tap: .cghidEventTap)
@@ -91,15 +79,13 @@ final class PasteService {
             }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             tryPaste()
         }
     }
 
-    /// 手動請求輔助使用權限（從設定頁呼叫）
-    static func requestAccessibility() {
-        let key = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String
-        let options = [key: true] as CFDictionary
-        AXIsProcessTrustedWithOptions(options)
+    static func openAccessibilitySettings() {
+        let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
+        NSWorkspace.shared.open(url)
     }
 }
