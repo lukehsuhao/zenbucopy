@@ -542,6 +542,24 @@ struct SettingsTabView: View {
                 // 一般
                 settingsSection(title: "一般", icon: "gearshape") {
                     settingsToggle(label: "開機時啟動", isOn: $viewModel.launchAtLogin)
+
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("輔助使用權限").font(.system(size: 13))
+                            Text("需要此權限才能自動貼上到其他 App").font(.system(size: 11)).foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        if AXIsProcessTrusted() {
+                            Text("✓ 已授權")
+                                .font(.system(size: 12))
+                                .foregroundColor(.green)
+                        } else {
+                            Button("開啟授權") {
+                                PasteService.requestAccessibility()
+                            }
+                            .font(.system(size: 12))
+                        }
+                    }
                 }
 
                 // 歷史紀錄

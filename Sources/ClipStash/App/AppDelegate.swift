@@ -12,6 +12,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         monitor.start()
 
         HotkeyManager.shared.onHotkey = {
+            PasteService.shared.capturePreviousApp()
             SearchPanelController.shared.toggle()
         }
         HotkeyManager.shared.register()

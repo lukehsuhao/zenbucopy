@@ -31,5 +31,8 @@ swiftc \
   Sources/ClipStash/App/AppDelegate.swift \
   Sources/ClipStash/App/ClipStashApp.swift
 
+# 簽名（固定 identifier，讓輔助使用權限在重新 build 後仍有效）
+codesign -f -s - --identifier "com.luke.paster" Paster.app 2>/dev/null
+
 echo "✅ Built: Paster.app"
 echo "   Run: open Paster.app"

@@ -24,8 +24,6 @@ final class SearchPanelController {
     }
 
     func show() {
-        PasteService.shared.previousApp = NSWorkspace.shared.frontmostApplication
-
         viewModel.refresh()
         viewModel.searchText = ""
 
