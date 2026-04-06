@@ -1,4 +1,4 @@
-# Paster
+# ZenbuCopy
 
 免費、開源的 macOS 剪貼簿歷史管理工具。自動記錄複製的內容，快速搜尋、釘選常用片段、分類管理。
 
@@ -51,18 +51,18 @@
 
 ### 方法一：直接下載（推薦）
 
-前往 [Releases](../../releases) 下載最新的 `Paster.dmg` 或 `Paster.app.zip`，解壓後拖到 `/Applications`。
+前往 [Releases](../../releases) 下載最新的 `ZenbuCopy.dmg` 或 `ZenbuCopy.app.zip`，解壓後拖到 `/Applications`。
 
 ### 方法二：從原始碼編譯
 
 需要 macOS Command Line Tools（不需要完整 Xcode）：
 
 ```bash
-git clone https://github.com/lukehsuhao/paster.git
-cd paster
+git clone https://github.com/lukehsuhao/zenbucopy.git
+cd zenbucopy
 chmod +x build.sh
 ./build.sh
-open Paster.app
+open ZenbuCopy.app
 ```
 
 ## 使用方式
@@ -76,7 +76,7 @@ open Paster.app
 
 | 快捷鍵 | 功能 |
 |--------|------|
-| `Ctrl+R` | 開啟 Paster（可自訂） |
+| `Ctrl+R` | 開啟 ZenbuCopy（可自訂） |
 | `Ctrl+E` | 開啟釘選頁（可自訂） |
 | `↑` `↓` `←` `→` | 選擇項目 |
 | `Enter` | 貼上選取項目 |
@@ -88,7 +88,7 @@ open Paster.app
 
 系統會要求授權「輔助使用」權限（用於模擬 `Cmd+V` 貼上），請到：
 
-**系統設定 → 隱私權與安全性 → 輔助使用** → 開啟 Paster
+**系統設定 → 隱私權與安全性 → 輔助使用** → 開啟 ZenbuCopy
 
 ## 授權
 

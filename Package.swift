@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Paster",
+    name: "ZenbuCopy",
     platforms: [
         .macOS(.v13)
     ],
@@ -12,9 +12,9 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "Paster",
+            name: "ZenbuCopy",
             dependencies: ["ShortcutRecorder"],
-            path: "Sources/Paster",
+            path: "Sources/ZenbuCopy",
             swiftSettings: [
                 .unsafeFlags(["-parse-as-library"])
             ],
