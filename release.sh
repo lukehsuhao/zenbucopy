@@ -5,7 +5,7 @@ set -e
 
 VERSION="${1:?用法: ./release.sh <版本號> (例: ./release.sh 1.3.0)}"
 SIGNING_ID="Developer ID Application: Hao Hsu (V6ZDDG5Z68)"
-BUNDLE_ID="com.luke.zenbucopy"
+BUNDLE_ID="com.zenbu.copy"
 NOTARY_PROFILE="ZenbuCopy"
 GITHUB_REPO="lukehsuhao/zenbucopy"
 

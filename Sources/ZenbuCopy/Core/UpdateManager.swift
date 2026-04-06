@@ -149,7 +149,7 @@ final class UpdateManager: ObservableObject {
             sleep 1
             rm -rf "\(currentApp.path)"
             cp -R "\(newApp.path)" "\(currentApp.path)"
-            codesign -f -s - --identifier "com.luke.zenbucopy" "\(currentApp.path)" 2>/dev/null
+            codesign -f -s - --identifier "com.zenbu.copy" "\(currentApp.path)" 2>/dev/null
             open "\(currentApp.path)"
             rm -rf "\(tempDir.path)"
             """

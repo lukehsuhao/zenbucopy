@@ -51,7 +51,7 @@ final class PasteService {
 
     private func debugLog(_ msg: String) {
         let line = "[\(DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium))] \(msg)\n"
-        let path = NSHomeDirectory() + "/paster-debug.log"
+        let path = NSHomeDirectory() + "/zenbucopy-debug.log"
         if let handle = FileHandle(forWritingAtPath: path) {
             handle.seekToEndOfFile()
             handle.write(line.data(using: .utf8)!)
