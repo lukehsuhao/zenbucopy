@@ -9,13 +9,13 @@ DerivedData/
 .netrc
 
 # Build output
-Paster.app/Contents/MacOS/Paster
-Paster.app/Contents/Resources/ShortcutRecorder_ShortcutRecorder.bundle/
-Paster.app/Contents/_CodeSignature/
-Paster.app/Contents/CodeResources
-Paster-*.zip
-Paster-*.dmg
-paster-debug.log
+ZenbuCopy.app/Contents/MacOS/ZenbuCopy
+ZenbuCopy.app/Contents/Resources/ShortcutRecorder_ShortcutRecorder.bundle/
+ZenbuCopy.app/Contents/_CodeSignature/
+ZenbuCopy.app/Contents/CodeResources
+ZenbuCopy-*.zip
+ZenbuCopy-*.dmg
+zenbucopy-debug.log
 
 # Old Python version
 venv/
@@ -25,4 +25,3 @@ clipboard_history.py
 clipboard_history.db
 start.sh
 com.luke.clipboard-history.plist
-/Paster
